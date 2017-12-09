@@ -75,3 +75,7 @@ Of course! Just run `nimble create wp-cli --template johnrom/nimble-wp-cli-templ
 Some of the Docker technologies used by this project have been deprecated after a year or so. `docker-compose` templates may need to be updated to stop using the `extends` keyword, or we should get together and ask to reimplement `extends` in v3!
 
 This also doesn't use the latest version of WordPress right now, as I haven't had time to update the WP image on Docker Hub (I believe the entrypoint method has changed), so you should update WordPress after downloading (maybe via WP-CLI!).
+
+Installing for the first time may take a while, because of downloading all the docker images. I'd go get some coffee.
+
+Creating a new WP CLI will always take a while because there is no cache for Composer shared between containers. More Coffee!

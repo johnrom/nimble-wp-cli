@@ -1,0 +1,3 @@
+webgrind/* linguist-vendored
+*.sh eol=lf
+*.conf eol=lf

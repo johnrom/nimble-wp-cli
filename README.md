@@ -37,7 +37,7 @@ Admin privileges are needed to fully automate this project by editing your hosts
 - Share your drive with `Docker for Mac` or `Docker for Windows`
 - Add `~/bin` to your path. This is used to make the script callable via `nimble`.
 - Install a PHP Xdebug debugger for your editor of choice.
-- Download this repo.
+- Clone this Repo to your desired location (e.g., `~/nimble-wp-cli`) **making sure to recurse submodules!**
 - Open your Git-Aware command line (Admin privileges, if desired) at the root of this repo (e.g., `~/nimble-wp-cli`)
 - Run `./_nimble/nimble.sh localize`. This will enable you to run the `nimble` command.
 - Run `nimble init wp-cli`.

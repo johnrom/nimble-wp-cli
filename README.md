@@ -52,6 +52,15 @@ Opening your editor to the folder `nimble-wp-cli/sites/wp-cli` will have it read
 
 You should be ready to hit breakpoints!
 
+### Running and Testing WP CLI
+
+After running setting up, there are two ways to run WP CLI in the container:
+
+- `nimble wp wp-cli $commands` will run WP CLI from outside the container. For example, `nimble wp wp-cli core install [...]` will install the WP site at `http://wp-cli.local`
+- `nimble attach wp-cli` will enter a bash instance within the container, where you can enter commands regularly, like `wp core install [...]`
+
+The project supports both Behat and PHPUnit testing via `nimble test wp-cli behat` and `nimble test wp-cli phpunit` respectively.
+
 ### Can I use this template within other Nimble Environments?
 
 Of course! Just run `nimble create wp-cli --template johnrom/nimble-wp-cli-template` and follow the instructions for enabling debugging within the `sites/wp-cli` folder for the site `http://wp-cli.local`.
@@ -59,3 +68,5 @@ Of course! Just run `nimble create wp-cli --template johnrom/nimble-wp-cli-templ
 ### Afterthoughts
 
 Some of the Docker technologies used by this project have been deprecated after a year or so. `docker-compose` templates may need to be updated to stop using the `extends` keyword, or we should get together and ask to reimplement `extends` in v3!
+
+This also doesn't use the latest version of WordPress right now, as I haven't had time to update the WP image on Docker Hub (I believe the entrypoint method has changed), so you should update WordPress after downloading (maybe via WP-CLI!).

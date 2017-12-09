@@ -52,6 +52,11 @@ Opening your editor to the folder `nimble-wp-cli/sites/wp-cli` will have it read
 
 You should be ready to hit breakpoints!
 
+To debug database or performance, it also supports PHPMyAdmin and Webgrind at the following URLs:
+
+- `phpmyadmin.wp-cli.local`
+- `webgrind.wp-cli.local` (may need to run `nimble down && nimble up profile` in order to get profiling started)
+
 ### Running and Testing WP CLI
 
 After running setting up, there are two ways to run WP CLI in the container:

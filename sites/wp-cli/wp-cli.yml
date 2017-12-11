@@ -1,0 +1,86 @@
+
+### wp-cli_start ###
+
+wp-cli_www:
+  container_name: wp-cli_www
+  extends:
+    file: COMMON
+    service: wp_cli_files
+  volumes:
+    - SITEROOT/www:/var/www/html
+    - SITEROOT/logs/php.log:/var/log/php.log
+    - SITEROOT/cachegrind:/tmp/cachegrind
+    - SITEROOT/cli:/app
+    - SITEROOT/_conf/z-05-php-project.ini:/usr/local/etc/php/conf.d/z-05-php-project.ini
+
+wp-cli_site:
+  container_name: wp-cli_site
+  extends:
+    file: COMMON
+    service: wp_cli_site
+  volumes_from:
+    - wp-cli_www
+  environment:
+    - VIRTUAL_HOST=wp-cli.local
+  links:
+    - wp-cli_db:mysql
+
+wp-cli:
+  container_name: wp-cli
+  extends:
+    file: COMMON
+    service: wp_cli
+  volumes_from:
+    - wp-cli_www
+  volumes:
+    - SITEROOT/logs:/var/log
+  links:
+    - wp-cli_db:mysql
+    - wp-cli_test_db:mysql_test
+
+
+wp-cli_composer:
+  container_name: wp-cli_composer
+  extends:
+    file: COMMON
+    service: wp_cli_composer
+  volumes_from:
+    - wp-cli_www
+
+wp-cli_db:
+  container_name: wp-cli_db
+  extends:
+    file: COMMON
+    service: wp_cli_db
+  volumes:
+    - wp-cli_db_volume:/var/lib/mysql
+
+wp-cli_test_db:
+  container_name: wp-cli_test_db
+  extends:
+    file: COMMON
+    service: wp_cli_test_db
+  volumes:
+    - wp-cli_test_db_volume:/var/lib/mysql
+
+wp-cli_pma:
+  container_name: wp-cli_pma
+  extends:
+    file: COMMON
+    service: wp_cli_pma
+  environment:
+    - VIRTUAL_HOST=phpmyadmin.wp-cli.local
+  links:
+    - wp-cli_db:mysql
+
+wp-cli_webgrind:
+  container_name: wp-cli_webgrind
+  extends:
+    file: COMMON
+    service: wp_cli_webgrind
+  environment:
+    - VIRTUAL_HOST=webgrind.wp-cli.local
+  volumes:
+    - NIMBLE/sites/wp-cli/cachegrind:/tmp
+
+### wp-cli_end ###
